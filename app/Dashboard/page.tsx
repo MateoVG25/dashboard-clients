@@ -4,12 +4,7 @@ import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
-
-// charts
-import PickingChart from "@/components/PickingChart";
-import PackingChart from "@/components/PackingChart";
-import RecepcionChart from "@/components/RecepcionChart";
-
+import dynamic from "next/dynamic";
 import { useDragAndDrop } from "@formkit/drag-and-drop/react";
 
 type CardProps = React.ComponentProps<typeof Card>;
@@ -24,7 +19,17 @@ const titleDashboard = {
   Packing: "Packing",
 };
 
-export const Dashboard = ({ className, ...props }: CardProps) => {
+const PickingChart = dynamic(() => import("@/components/PickingChart"), {
+  ssr: false,
+});
+const PackingChart = dynamic(() => import("@/components/PackingChart"), {
+  ssr: false,
+});
+const RecepcionChart = dynamic(() => import("@/components/RecepcionChart"), {
+  ssr: false,
+});
+
+const Dashboard = ({ className, ...props }: CardProps) => {
   const charts = [
     <PickingChart key="picking" />,
     <PackingChart key="packing" />,
@@ -36,7 +41,6 @@ export const Dashboard = ({ className, ...props }: CardProps) => {
   );
 
   // apis
-
   const { data: resumenOperacionData } = ResumenOperacionAPI();
 
   return (
@@ -184,3 +188,5 @@ export const Dashboard = ({ className, ...props }: CardProps) => {
     </>
   );
 };
+
+export default Dashboard;
