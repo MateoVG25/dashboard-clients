@@ -27,6 +27,6 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "app/api/ResumenOperacion.ts"
-  ],
+, "server.js"  ],
   "exclude": ["node_modules"]
 }

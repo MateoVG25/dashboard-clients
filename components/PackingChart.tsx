@@ -31,7 +31,7 @@ const PackingChart = () => {
         xKey: "Usuario",
         yKey: "Lineas_Preparadas",
         yName: "Lineas Preparadas",
-        fill: "rgb(173, 232, 244)",
+        fill: "rgb(67, 97, 238)",
       },
     ],
   });

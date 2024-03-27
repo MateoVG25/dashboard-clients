@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { API_PATH } from "@/global-variables";
+import { RECEPCION_URL } from "@/global-variables";
 
 export const RecepcionAPI = () => {
   const getRecepcion = async () => {
     try {
-      const url = `http://172.16.0.8:4403/${API_PATH}/api/Recepcion/DiaProductividad`;
+      const url = `${RECEPCION_URL}`;
       const res = await axios.get(url);
       return res.data;
     } catch (error) {

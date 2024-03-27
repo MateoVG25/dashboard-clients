@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { API_PATH } from "@/global-variables";
+import { PACKING_URL } from "@/global-variables";
 
 export const PackingAPI = () => {
   const getPacking = async () => {
     try {
-      const url = `http://172.16.0.8:4403/${API_PATH}/api/Packing/DiaProductividad`;
+      const url = `${PACKING_URL}`;
       const res = await axios.get(url);
       return res.data;
     } catch (error) {
