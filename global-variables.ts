@@ -1,4 +1,4 @@
-const API_PATH = "Laura";
+const API_PATH = "GuiaCereza";
 
 // Laura
 const URL = `http://172.16.0.5:5001/`;
