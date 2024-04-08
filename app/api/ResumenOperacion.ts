@@ -18,7 +18,6 @@ export const ResumenOperacionAPI = () => {
     queryFn: getResumenOperacion,
     refetchInterval: 15 * 60 * 1000, // Refetch every 15 minutes
   });
-
   return {
     isLoading,
     data,

@@ -32,6 +32,11 @@ const PickingChart = () => {
         fill: "rgb(0, 119, 182)",
       },
     ],
+    overlays: {
+      noData: {
+        text: "No hay informacion para mostrar",
+      },
+    },
   });
 
   useEffect(() => {

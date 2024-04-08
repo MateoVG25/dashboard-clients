@@ -34,6 +34,11 @@ const PackingChart = () => {
         fill: "rgb(67, 97, 238)",
       },
     ],
+    overlays: {
+      noData: {
+        text: "No hay informacion para mostrar",
+      },
+    },
   });
 
   useEffect(() => {

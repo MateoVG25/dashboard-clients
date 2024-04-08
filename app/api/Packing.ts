@@ -13,7 +13,6 @@ export const PackingAPI = () => {
       throw error;
     }
   };
-
   const { isLoading, isError, error, data } = useQuery({
     queryKey: ["KeyPacking"],
     queryFn: getPacking,

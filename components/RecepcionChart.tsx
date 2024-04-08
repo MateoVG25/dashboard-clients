@@ -29,6 +29,11 @@ const RecepcionChart = () => {
         yName: "Lineas Preparadas",
       },
     ],
+    overlays: {
+      noData: {
+        text: "No hay informacion para mostrar",
+      },
+    },
   });
 
   useEffect(() => {
