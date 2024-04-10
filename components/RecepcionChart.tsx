@@ -48,7 +48,14 @@ const RecepcionChart = () => {
   if (isLoadingRecepcion) return "Cargando...";
   return (
     <>
-      <div className="ag-theme-alpine" style={{ width: 700, height: 500 }}>
+      <div
+        className="ag-theme-alpine"
+        style={{
+          width: 700,
+          height: 500,
+          boxShadow: "10px 10px 10px 10px rgb(16,0,43)",
+        }}
+      >
         <AgChartsReact options={data} />
       </div>
     </>

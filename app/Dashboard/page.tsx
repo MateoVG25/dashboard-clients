@@ -200,7 +200,7 @@ const Dashboard = ({ className, ...props }: CardProps) => {
           </CardContent>
         </Card>
       </div>
-      <div className="flex my-20 justify-around flex-wrap" ref={parent}>
+      <div className="flex my-20 justify-around flex-wrap gap-4 gap-y-10" ref={parent}>
         {draggableCharts.map((chart) => (
           <div className="draggable-chart" key={chart.key}>
             {chart}

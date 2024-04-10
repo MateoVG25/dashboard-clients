@@ -39,9 +39,9 @@ const PackingChart = () => {
         text: "No hay informacion para mostrar",
       },
     },
-    background: {
-      fill: "rgb(16,0,43)",
-    },
+    // background: {
+    //   fill: "rgb(16,0,43)",
+    // },
   });
 
   useEffect(() => {
@@ -57,8 +57,12 @@ const PackingChart = () => {
 
   return (
     <div
-      className="ag-theme-alpine dark:text-white"
-      style={{ width: 700, height: 500 }}
+      className="ag-theme-alpine "
+      style={{
+        width: 700,
+        height: 500,
+        boxShadow: "10px 10px 10px 10px rgb(16,0,43)",
+      }}
     >
       <AgChartsReact options={data} />
     </div>
