@@ -39,6 +39,9 @@ const PackingChart = () => {
         text: "No hay informacion para mostrar",
       },
     },
+    background: {
+      fill: "rgb(16,0,43)",
+    },
   });
 
   useEffect(() => {
@@ -53,7 +56,10 @@ const PackingChart = () => {
   if (isLoadingPacking) return "Cargando...";
 
   return (
-    <div className="ag-theme-alpine" style={{ width: 700, height: 500 }}>
+    <div
+      className="ag-theme-alpine dark:text-white"
+      style={{ width: 700, height: 500 }}
+    >
       <AgChartsReact options={data} />
     </div>
   );

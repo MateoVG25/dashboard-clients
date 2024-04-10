@@ -19,6 +19,8 @@ const config = {
     },
     extend: {
       colors: {
+        "dark-mode": "rgb(108,117,125)",
+        "light-mode": "rgb(245,235,224)",
         blue: {
           50: "rgba(59, 130, 246, 1)",
           100: "rgba(50, 125, 246, 1)",

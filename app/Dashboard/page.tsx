@@ -6,6 +6,12 @@ import { cn } from "@/lib/utils";
 import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
 import { useDragAndDrop } from "@formkit/drag-and-drop/react";
 
+// light and dark mode
+import LightDarkMode from "@/components/ui/light-dark-mode";
+
+// title
+import { SparklesCore } from "@/components/ui/sparkles";
+
 type CardProps = React.ComponentProps<typeof Card>;
 
 import { ResumenOperacionAPI } from "@/app/api/ResumenOperacion";
@@ -16,6 +22,7 @@ const titleDashboard = {
   EnBandeja: "En bandeja",
   Picking: "Picking",
   Packing: "Packing",
+  PedidosFinalizadosPack: "Packing finalizados",
 };
 
 import RecepcionChart from "@/components/RecepcionChart";
@@ -38,19 +45,10 @@ const Dashboard = ({ className, ...props }: CardProps) => {
 
   return (
     <>
-      <TextGenerateEffect
-        words={titleDashboard.titleDashboard}
-        className="text-center my-5"
-        textSize="text-4xl"
-      />
+      {/* <SparklesCore /> */}
+      <LightDarkMode />
       <div className="flex justify-evenly gap-5 flex-wrap">
-        <Card
-          className={`${cn(
-            "w-[380px]",
-            className
-          )} rounded-xl shadow-[0_10px_20px_rgba(8,_112,_184,_0.7)]`}
-          {...props}
-        >
+        <Card className={`${cn("w-[380px]", className)} rounded-xl`} {...props}>
           <CardHeader>
             <CardTitle className="text-center">
               <TextGenerateEffect
@@ -60,24 +58,26 @@ const Dashboard = ({ className, ...props }: CardProps) => {
               />
             </CardTitle>
           </CardHeader>
-          <CardContent className="grid gap-4">
+          <CardContent>
             {resumenOperacionData &&
               resumenOperacionData.map((item: any, index: number) => (
                 <div key={index}>
-                  <p className="text-center">Pedidos: {item.PedidosCargados}</p>
-                  <p className="text-center">Lineas: {item.LineasCargadas}</p>
                   <p className="text-center">
-                    Unidades: {item.UnidadesCargadas}
+                    Pedidos: <p className="font-bold">{item.PedidosCargados}</p>
+                  </p>
+                  <p className="text-center">
+                    Lineas: <p className="font-bold">{item.LineasCargadas}</p>
+                  </p>
+                  <p className="text-center">
+                    Unidades:{" "}
+                    <p className="font-bold">{item.UnidadesCargadas}</p>
                   </p>
                 </div>
               ))}
           </CardContent>
         </Card>
         <Card
-          className={`${cn(
-            "w-[380px]",
-            className
-          )} rounded-xl shadow-[0_10px_20px_rgba(8,_112,_184,_0.7)]`}
+          className={`${cn("w-[380px]", className)} rounded-xl `}
           {...props}
         >
           <CardHeader>
@@ -94,21 +94,22 @@ const Dashboard = ({ className, ...props }: CardProps) => {
               resumenOperacionData.map((item: any, index: number) => (
                 <div key={index}>
                   <p className="text-center text-">
-                    Pedidos: {item.PedidosEnBandeja}
+                    Pedidos:{" "}
+                    <p className="font-bold">{item.PedidosEnBandeja}</p>
                   </p>
-                  <p className="text-center">Lineas: {item.LineasEnBandeja}</p>
                   <p className="text-center">
-                    Unidades: {item.UnidadesEnBandeja}
+                    Lineas: <p className="font-bold">{item.LineasEnBandeja}</p>
+                  </p>
+                  <p className="text-center">
+                    Unidades:{" "}
+                    <p className="font-bold">{item.UnidadesEnBandeja}</p>
                   </p>
                 </div>
               ))}
           </CardContent>
         </Card>
         <Card
-          className={`${cn(
-            "w-[380px]",
-            className
-          )} rounded-xl shadow-[0_10px_20px_rgba(8,_112,_184,_0.7)]`}
+          className={`${cn("w-[380px]", className)} rounded-xl `}
           {...props}
         >
           <CardHeader>
@@ -125,23 +126,23 @@ const Dashboard = ({ className, ...props }: CardProps) => {
               resumenOperacionData.map((item: any, index: number) => (
                 <div key={index}>
                   <p className="text-center">
-                    Pedidos: {item.PedidosEnPicking}
+                    Pedidos:{" "}
+                    <p className="font-bold">{item.PedidosEnPicking}</p>
                   </p>
                   <p className="text-center">
-                    Lineas pendientes: {item.LineasPendientesPick}
+                    Lineas pendientes:{" "}
+                    <p className="font-bold">{item.LineasPendientesPick}</p>
                   </p>
                   <p className="text-center">
-                    Unidades pendientes: {item.UnidadesPendientesPick}
+                    Unidades pendientes:{" "}
+                    <p className="font-bold">{item.UnidadesPendientesPick}</p>
                   </p>
                 </div>
               ))}
           </CardContent>
         </Card>
         <Card
-          className={`${cn(
-            "w-[380px]",
-            className
-          )} rounded-xl shadow-[0_10px_20px_rgba(8,_112,_184,_0.7)]`}
+          className={`${cn("w-[380px]", className)} rounded-xl `}
           {...props}
         >
           <CardHeader>
@@ -158,13 +159,41 @@ const Dashboard = ({ className, ...props }: CardProps) => {
               resumenOperacionData.map((item: any, index: number) => (
                 <div key={index}>
                   <p className="text-center">
-                    Pedidos: {item.PedidosEnPacking}
+                    Pedidos:{" "}
+                    <p className="font-bold">{item.PedidosEnPacking}</p>
                   </p>
                   <p className="text-center">
-                    Lineas pendientes: {item.LineasPendientesPack}
+                    Lineas pendientes:{" "}
+                    <p className="font-bold">{item.LineasPendientesPack}</p>
                   </p>
                   <p className="text-center">
-                    Unidades pendientes: {item.UnidadesPendientesPack}
+                    Unidades pendientes:{" "}
+                    <p className="font-bold">{item.UnidadesPendientesPack}</p>
+                  </p>
+                </div>
+              ))}
+          </CardContent>
+        </Card>
+        <Card
+          className={`${cn("w-[380px]", className)} rounded-xl `}
+          {...props}
+        >
+          <CardHeader>
+            <CardTitle className="text-center">
+              <TextGenerateEffect
+                words={titleDashboard.PedidosFinalizadosPack}
+                duration={2}
+                textSize="text-4xl"
+              />
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="grid gap-4">
+            {resumenOperacionData &&
+              resumenOperacionData.map((item: any, index: number) => (
+                <div key={index}>
+                  <p className="text-center text-lg">
+                    Pedidos:{" "}
+                    <p className="font-bold">{item.PedidosFinalizadosPack}</p>
                   </p>
                 </div>
               ))}

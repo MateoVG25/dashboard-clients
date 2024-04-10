@@ -1,7 +1,6 @@
 const API_PATH = "GuiaCereza";
 
-// Laura
-const URL = `http://172.16.0.5:5001/`;
+const URL = `http://www.tecnocedicore.com/APIDashboard/`;
 
 // const URL = `http://172.31.27.115/AguaBendita/Dashboard/API/`
 

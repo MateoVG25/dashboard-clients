@@ -29,7 +29,7 @@ export const TextGenerateEffect = ({
         delay: stagger(0.2),
       }
     );
-  }, [duration]); // La matriz de dependencias no incluye 'animate'
+  }, [duration]);
 
   const renderWords = () => {
     return (
@@ -38,7 +38,7 @@ export const TextGenerateEffect = ({
           return (
             <motion.span
               key={word + idx}
-              className="dark:text-white text-black opacity-0"
+              className="dark:text-white text-white opacity-0"
             >
               {word}{" "}
             </motion.span>
@@ -53,7 +53,7 @@ export const TextGenerateEffect = ({
       <div className="mt-4">
         <div
           className={cn(
-            " dark:text-white text-black leading-snug tracking-wide",
+            " dark:text-white text-white leading-snug tracking-wide",
             textSize
           )}
         >
