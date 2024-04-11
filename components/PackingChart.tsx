@@ -23,7 +23,7 @@ const PackingChart = () => {
         xKey: "Usuario",
         yKey: "Unidades_Preparadas",
         yName: "Unidades Preparadas",
-        fill: "rgb(0, 180, 216)",
+        fill: "rgb(157, 2, 8)",
       },
       {
         type: "bar",
@@ -31,7 +31,7 @@ const PackingChart = () => {
         xKey: "Usuario",
         yKey: "Lineas_Preparadas",
         yName: "Lineas Preparadas",
-        fill: "rgb(67, 97, 238)",
+        fill: "rgb(232, 93, 4)",
       },
     ],
     overlays: {
@@ -61,7 +61,7 @@ const PackingChart = () => {
       style={{
         width: 700,
         height: 500,
-        boxShadow: "10px 10px 10px 10px rgb(16,0,43)",
+        boxShadow: "0px 0px 10px 10px rgb(16,0,43)",
       }}
     >
       <AgChartsReact options={data} />

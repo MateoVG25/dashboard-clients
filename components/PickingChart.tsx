@@ -56,7 +56,7 @@ const PickingChart = () => {
         style={{
           width: 700,
           height: 500,
-          boxShadow: "10px 10px 10px 10px rgb(16,0,43)",
+          boxShadow: "0px 0px 10px 10px rgb(16,0,43)",
         }}
       >
         <AgChartsReact options={data} />
