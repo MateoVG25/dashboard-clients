@@ -183,7 +183,7 @@ const Dashboard = ({ className, ...props }: CardProps) => {
             {resumenOperacionData &&
               resumenOperacionData.map((item: any, index: number) => (
                 <div key={index}>
-                  <p className="text-center text-lg">
+                  <p className="text-center">
                     Pedidos:{" "}
                     <p className="font-bold">{item.PedidosFinalizadosPack}</p>
                   </p>
