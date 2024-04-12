@@ -2,8 +2,6 @@ const API_PATH = "GuiaCereza";
 
 const URL = `http://www.tecnocedicore.com/APIDashboard/`;
 
-// const URL = `http://172.31.27.115/AguaBendita/Dashboard/API/`
-
 const PACKING_PATH = `/api/Packing/DiaProductividad`;
 
 const PICKING_PATH = `/api/Picking/DiaProductividad`;
