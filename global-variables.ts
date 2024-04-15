@@ -1,4 +1,4 @@
-const API_PATH = "GuiaCereza";
+const API_PATH = "Laura";
 
 const URL = `http://www.tecnocedicore.com/APIDashboard/`;
 
