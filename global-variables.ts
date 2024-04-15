@@ -1,9 +1,6 @@
 const API_PATH = "Laura";
 
-// Laura
 const URL = `http://172.16.0.5:5001/`;
-
-// const URL = `http://172.31.27.115/AguaBendita/Dashboard/API/`
 
 const PACKING_PATH = `/api/Packing/DiaProductividad`;
 
