@@ -9,9 +9,11 @@ const LightDarkMode = () => {
 
   useEffect(() => {
     if (theme === "dark") {
-      document.body.style.backgroundColor = "rgb(46,42,75)"; // dark
+      document.body.classList.add("dark-theme");
+      document.body.classList.remove("light-theme");
     } else {
-      document.body.style.backgroundColor = "rgb(245,235,224)"; // light
+      document.body.classList.add("light-theme");
+      document.body.classList.remove("dark-theme");
     }
   }, [theme]);
 

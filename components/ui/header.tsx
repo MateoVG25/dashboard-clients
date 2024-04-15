@@ -5,19 +5,16 @@ import Image from "next/image";
 const HeaderComponent = () => {
   return (
     <div className="flex justify-between items-center p-4">
-      <div className="flex h-7 w-36">
+      <div className="flex h-14 w-72">
         <Image
           src="/static/images/LOGO_TECNOCEDI.png"
           alt="Logo"
-          width={200} 
-          height={50}
-          layout="responsive"
+          width={400} // Set the width and height to the desired values
+          height={100}
+          priority
         />
       </div>
-      <h1 className="flex-grow text-center text-4xl font-semibold text-black dark:text-white">
-        Dashboard
-      </h1>
-      <div className="w-32">
+      <div className="w-72 grid justify-items-end">
         <LightDarkMode />
       </div>
     </div>

@@ -58,14 +58,16 @@ const Dashboard = ({ className, ...props }: CardProps) => {
               resumenOperacionData.map((item: any, index: number) => (
                 <div key={index}>
                   <p className="text-center">
-                    Pedidos: <p className="font-bold">{item.PedidosCargados}</p>
+                    Pedidos:{" "}
+                    <span className="font-bold">{item.PedidosCargados}</span>
                   </p>
                   <p className="text-center">
-                    Lineas: <p className="font-bold">{item.LineasCargadas}</p>
+                    Lineas:{" "}
+                    <span className="font-bold">{item.LineasCargadas}</span>
                   </p>
                   <p className="text-center">
                     Unidades:{" "}
-                    <p className="font-bold">{item.UnidadesCargadas}</p>
+                    <span className="font-bold">{item.UnidadesCargadas}</span>
                   </p>
                 </div>
               ))}
@@ -88,16 +90,17 @@ const Dashboard = ({ className, ...props }: CardProps) => {
             {resumenOperacionData &&
               resumenOperacionData.map((item: any, index: number) => (
                 <div key={index}>
-                  <p className="text-center text-">
+                  <p className="text-center">
                     Pedidos:{" "}
-                    <p className="font-bold">{item.PedidosEnBandeja}</p>
+                    <span className="font-bold">{item.PedidosEnBandeja}</span>
                   </p>
                   <p className="text-center">
-                    Lineas: <p className="font-bold">{item.LineasEnBandeja}</p>
+                    Lineas:{" "}
+                    <span className="font-bold">{item.LineasEnBandeja}</span>
                   </p>
                   <p className="text-center">
                     Unidades:{" "}
-                    <p className="font-bold">{item.UnidadesEnBandeja}</p>
+                    <span className="font-bold">{item.UnidadesEnBandeja}</span>
                   </p>
                 </div>
               ))}
@@ -122,15 +125,19 @@ const Dashboard = ({ className, ...props }: CardProps) => {
                 <div key={index}>
                   <p className="text-center">
                     Pedidos:{" "}
-                    <p className="font-bold">{item.PedidosEnPicking}</p>
+                    <span className="font-bold">{item.PedidosEnPicking}</span>
                   </p>
                   <p className="text-center">
                     Lineas pendientes:{" "}
-                    <p className="font-bold">{item.LineasPendientesPick}</p>
+                    <span className="font-bold">
+                      {item.LineasPendientesPick}
+                    </span>
                   </p>
                   <p className="text-center">
                     Unidades pendientes:{" "}
-                    <p className="font-bold">{item.UnidadesPendientesPick}</p>
+                    <span className="font-bold">
+                      {item.UnidadesPendientesPick}
+                    </span>
                   </p>
                 </div>
               ))}
@@ -152,15 +159,19 @@ const Dashboard = ({ className, ...props }: CardProps) => {
                 <div key={index}>
                   <p className="text-center">
                     Pedidos:{" "}
-                    <p className="font-bold">{item.PedidosEnPacking}</p>
+                    <span className="font-bold">{item.PedidosEnPacking}</span>
                   </p>
                   <p className="text-center">
                     Lineas pendientes:{" "}
-                    <p className="font-bold">{item.LineasPendientesPack}</p>
+                    <span className="font-bold">
+                      {item.LineasPendientesPack}
+                    </span>
                   </p>
                   <p className="text-center">
                     Unidades pendientes:{" "}
-                    <p className="font-bold">{item.UnidadesPendientesPack}</p>
+                    <span className="font-bold">
+                      {item.UnidadesPendientesPack}
+                    </span>
                   </p>
                 </div>
               ))}
@@ -185,7 +196,9 @@ const Dashboard = ({ className, ...props }: CardProps) => {
                 <div key={index}>
                   <p className="text-center">
                     Pedidos:{" "}
-                    <p className="font-bold">{item.PedidosFinalizadosPack}</p>
+                    <span className="font-bold">
+                      {item.PedidosFinalizadosPack}
+                    </span>
                   </p>
                 </div>
               ))}
