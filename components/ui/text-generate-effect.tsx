@@ -29,7 +29,7 @@ export const TextGenerateEffect = ({
         delay: stagger(0.2),
       }
     );
-  }, [duration]); // La matriz de dependencias no incluye 'animate'
+  }, [duration]);
 
   const renderWords = () => {
     return (
@@ -51,12 +51,7 @@ export const TextGenerateEffect = ({
   return (
     <div className={cn("font-bold", className)}>
       <div className="mt-4">
-        <div
-          className={cn(
-            " dark:text-white text-black leading-snug tracking-wide",
-            textSize
-          )}
-        >
+        <div className={cn(" leading-snug tracking-wide", textSize)}>
           {renderWords()}
         </div>
       </div>

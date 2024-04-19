@@ -1,6 +1,6 @@
 const API_PATH = "Laura";
 
-const URL = `http://172.16.0.5:5001/`;
+const URL = `http://www.tecnocedicore.com/APIDashboard/`;
 
 const PACKING_PATH = `/api/Packing/DiaProductividad`;
 

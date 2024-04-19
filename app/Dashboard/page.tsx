@@ -16,7 +16,10 @@ const titleDashboard = {
   EnBandeja: "En bandeja",
   Picking: "Picking",
   Packing: "Packing",
+  PedidosFinalizadosPack: "Packing finalizados",
 };
+
+import HeaderComponent from "@/components/ui/header";
 
 import RecepcionChart from "@/components/RecepcionChart";
 import PickingChart from "@/components/PickingChart";
@@ -38,19 +41,9 @@ const Dashboard = ({ className, ...props }: CardProps) => {
 
   return (
     <>
-      <TextGenerateEffect
-        words={titleDashboard.titleDashboard}
-        className="text-center my-5"
-        textSize="text-4xl"
-      />
-      <div className="flex justify-evenly gap-5 flex-wrap">
-        <Card
-          className={`${cn(
-            "w-[380px]",
-            className
-          )} rounded-xl shadow-[0_10px_20px_rgba(8,_112,_184,_0.7)]`}
-          {...props}
-        >
+      <HeaderComponent />
+      <div className="flex justify-evenly gap-5 flex-wrap gap-y-8">
+        <Card className={`${cn("w-[380px]", className)} rounded-xl`} {...props}>
           <CardHeader>
             <CardTitle className="text-center">
               <TextGenerateEffect
@@ -60,24 +53,28 @@ const Dashboard = ({ className, ...props }: CardProps) => {
               />
             </CardTitle>
           </CardHeader>
-          <CardContent className="grid gap-4">
+          <CardContent>
             {resumenOperacionData &&
               resumenOperacionData.map((item: any, index: number) => (
                 <div key={index}>
-                  <p className="text-center">Pedidos: {item.PedidosCargados}</p>
-                  <p className="text-center">Lineas: {item.LineasCargadas}</p>
                   <p className="text-center">
-                    Unidades: {item.UnidadesCargadas}
+                    Pedidos:{" "}
+                    <span className="font-bold">{item.PedidosCargados}</span>
+                  </p>
+                  <p className="text-center">
+                    Lineas:{" "}
+                    <span className="font-bold">{item.LineasCargadas}</span>
+                  </p>
+                  <p className="text-center">
+                    Unidades:{" "}
+                    <span className="font-bold">{item.UnidadesCargadas}</span>
                   </p>
                 </div>
               ))}
           </CardContent>
         </Card>
         <Card
-          className={`${cn(
-            "w-[380px]",
-            className
-          )} rounded-xl shadow-[0_10px_20px_rgba(8,_112,_184,_0.7)]`}
+          className={`${cn("w-[380px]", className)} rounded-xl `}
           {...props}
         >
           <CardHeader>
@@ -93,22 +90,24 @@ const Dashboard = ({ className, ...props }: CardProps) => {
             {resumenOperacionData &&
               resumenOperacionData.map((item: any, index: number) => (
                 <div key={index}>
-                  <p className="text-center text-">
-                    Pedidos: {item.PedidosEnBandeja}
-                  </p>
-                  <p className="text-center">Lineas: {item.LineasEnBandeja}</p>
                   <p className="text-center">
-                    Unidades: {item.UnidadesEnBandeja}
+                    Pedidos:{" "}
+                    <span className="font-bold">{item.PedidosEnBandeja}</span>
+                  </p>
+                  <p className="text-center">
+                    Lineas:{" "}
+                    <span className="font-bold">{item.LineasEnBandeja}</span>
+                  </p>
+                  <p className="text-center">
+                    Unidades:{" "}
+                    <span className="font-bold">{item.UnidadesEnBandeja}</span>
                   </p>
                 </div>
               ))}
           </CardContent>
         </Card>
         <Card
-          className={`${cn(
-            "w-[380px]",
-            className
-          )} rounded-xl shadow-[0_10px_20px_rgba(8,_112,_184,_0.7)]`}
+          className={`${cn("w-[380px]", className)} rounded-xl `}
           {...props}
         >
           <CardHeader>
@@ -125,25 +124,26 @@ const Dashboard = ({ className, ...props }: CardProps) => {
               resumenOperacionData.map((item: any, index: number) => (
                 <div key={index}>
                   <p className="text-center">
-                    Pedidos: {item.PedidosEnPicking}
+                    Pedidos:{" "}
+                    <span className="font-bold">{item.PedidosEnPicking}</span>
                   </p>
                   <p className="text-center">
-                    Lineas pendientes: {item.LineasPendientesPick}
+                    Lineas pendientes:{" "}
+                    <span className="font-bold">
+                      {item.LineasPendientesPick}
+                    </span>
                   </p>
                   <p className="text-center">
-                    Unidades pendientes: {item.UnidadesPendientesPick}
+                    Unidades pendientes:{" "}
+                    <span className="font-bold">
+                      {item.UnidadesPendientesPick}
+                    </span>
                   </p>
                 </div>
               ))}
           </CardContent>
         </Card>
-        <Card
-          className={`${cn(
-            "w-[380px]",
-            className
-          )} rounded-xl shadow-[0_10px_20px_rgba(8,_112,_184,_0.7)]`}
-          {...props}
-        >
+        <Card className={`${cn("w-[380px]", className)} rounded-xl`} {...props}>
           <CardHeader>
             <CardTitle className="text-center">
               <TextGenerateEffect
@@ -158,20 +158,57 @@ const Dashboard = ({ className, ...props }: CardProps) => {
               resumenOperacionData.map((item: any, index: number) => (
                 <div key={index}>
                   <p className="text-center">
-                    Pedidos: {item.PedidosEnPacking}
+                    Pedidos:{" "}
+                    <span className="font-bold">{item.PedidosEnPacking}</span>
                   </p>
                   <p className="text-center">
-                    Lineas pendientes: {item.LineasPendientesPack}
+                    Lineas pendientes:{" "}
+                    <span className="font-bold">
+                      {item.LineasPendientesPack}
+                    </span>
                   </p>
                   <p className="text-center">
-                    Unidades pendientes: {item.UnidadesPendientesPack}
+                    Unidades pendientes:{" "}
+                    <span className="font-bold">
+                      {item.UnidadesPendientesPack}
+                    </span>
+                  </p>
+                </div>
+              ))}
+          </CardContent>
+        </Card>
+        <Card
+          className={`${cn("w-[380px]", className)} rounded-xl `}
+          {...props}
+        >
+          <CardHeader>
+            <CardTitle className="text-center">
+              <TextGenerateEffect
+                words={titleDashboard.PedidosFinalizadosPack}
+                duration={2}
+                textSize="text-4xl"
+              />
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="grid gap-4">
+            {resumenOperacionData &&
+              resumenOperacionData.map((item: any, index: number) => (
+                <div key={index}>
+                  <p className="text-center">
+                    Pedidos:{" "}
+                    <span className="font-bold">
+                      {item.PedidosFinalizadosPack}
+                    </span>
                   </p>
                 </div>
               ))}
           </CardContent>
         </Card>
       </div>
-      <div className="flex my-20 justify-around flex-wrap" ref={parent}>
+      <div
+        className="flex my-20 justify-around flex-wrap gap-4 gap-y-10"
+        ref={parent}
+      >
         {draggableCharts.map((chart) => (
           <div className="draggable-chart" key={chart.key}>
             {chart}
