@@ -5,23 +5,25 @@ import { AgChartsReact } from "ag-charts-react";
 import { AgChartOptions } from "ag-charts-community";
 import { PackingAPI } from "../app/api/Packing";
 import { useTheme } from "next-themes";
+import { chartsTheme } from "./chartsTheme";
 
 const PackingChart = () => {
   const { theme } = useTheme();
   const { isLoading: isLoadingPacking, data: packingData } = PackingAPI();
 
   const [data, setData] = useState<AgChartOptions>({
+    theme: chartsTheme,
     title: {
       text: "Packing",
     },
     subtitle: {
       text: "Packing por usuario",
     },
+
     data: [],
     series: [
       {
         type: "bar",
-        direction: "horizontal",
         xKey: "Usuario",
         yKey: "Unidades_Preparadas",
         yName: "Unidades Preparadas",
@@ -29,7 +31,6 @@ const PackingChart = () => {
       },
       {
         type: "bar",
-        direction: "horizontal",
         xKey: "Usuario",
         yKey: "Lineas_Preparadas",
         yName: "Lineas Preparadas",
@@ -41,9 +42,6 @@ const PackingChart = () => {
         text: "No hay informacion para mostrar",
       },
     },
-    // background: {
-    //   fill: "rgb(16,0,43)",
-    // },
   });
 
   useEffect(() => {

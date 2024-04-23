@@ -5,11 +5,13 @@ import { AgChartsReact } from "ag-charts-react";
 import { AgChartOptions } from "ag-charts-community";
 import { RecepcionAPI } from "../app/api/Recepcion";
 import { useTheme } from "next-themes";
+import { chartsTheme } from "./chartsTheme";
 
 const RecepcionChart = () => {
   const { theme } = useTheme();
   const { isLoading: isLoadingRecepcion, data: recepcionData } = RecepcionAPI();
   const [data, setData] = useState<AgChartOptions>({
+    theme: chartsTheme,
     title: {
       text: "Recepcion",
     },
@@ -19,18 +21,19 @@ const RecepcionChart = () => {
     data: [],
     series: [
       {
-        type: "line",
+        type: "bar",
         xKey: "Usuario",
         yKey: "Unidades_Preparadas",
         yName: "Unidades Preparadas",
       },
       {
-        type: "line",
+        type: "bar",
         xKey: "Usuario",
         yKey: "Lineas_Preparadas",
         yName: "Lineas Preparadas",
       },
     ],
+
     overlays: {
       noData: {
         text: "No hay informacion para mostrar",

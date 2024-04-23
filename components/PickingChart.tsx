@@ -5,12 +5,14 @@ import { AgChartsReact } from "ag-charts-react";
 import { AgChartOptions } from "ag-charts-community";
 import { PickingAPI } from "../app/api/Picking";
 import { useTheme } from "next-themes";
+import { chartsTheme } from "./chartsTheme";
 
 const PickingChart = () => {
   const { theme } = useTheme();
   const { isLoading: isLoadingPicking, data: pickingData } = PickingAPI();
 
   const [data, setData] = useState<AgChartOptions>({
+    theme: chartsTheme,
     title: {
       text: "Picking",
     },
