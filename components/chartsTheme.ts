@@ -25,8 +25,8 @@ export const chartsTheme: AgChartTheme = {
         label: {
           fontFamily: "Fira code",
           enabled: true,
-          placement: "inside",
           color: "white",
+          placement: "inside",
           formatter: function (params) {
             return Math.round(params.value).toString();
           },
