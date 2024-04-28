@@ -7,6 +7,7 @@ import HeaderComponent from "@/components/ui/header";
 import RecepcionChart from "@/components/RecepcionChart";
 import PickingChart from "@/components/PickingChart";
 import PackingChart from "@/components/PackingChart";
+import ApexChartComponent from "@/components/PackingApexBar";
 
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -19,6 +20,8 @@ const Dashboard = () => {
     <PickingChart />,
     <PackingChart />,
   ]);
+
+  const cards = <Insights />;
 
   const renderCharts = (charts: JSX.Element[]) => {
     return (
@@ -51,10 +54,11 @@ const Dashboard = () => {
   return (
     <>
       <HeaderComponent />
-      <Insights />
-      <div className="flex flex-wrap justify-center mt-6 gap-x-10">
+      <div className="hidden 2xl:block">{cards}</div>
+      <div className="2xl:block flex flex-wrap justify-center mt-6 gap-x-10 ">
         {charts.length > 0 && renderCharts(charts)}
       </div>
+      <ApexChartComponent />
     </>
   );
 };
