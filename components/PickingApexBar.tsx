@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import ReactApexChart from "react-apexcharts";
-import { PackingAPI } from "../app/api/Packing";
+import { PickingAPI } from "../app/api/Picking";
 
-const PackingApexBar = () => {
-  const { isLoading: isLoadingPacking, data: packingData } = PackingAPI();
+const PickingApexChart = () => {
+  const { isLoading: isLoadingPicking, data: pickingData } = PickingAPI();
 
   const [options, setOptions] = useState({
     chart: {
@@ -38,11 +38,10 @@ const PackingApexBar = () => {
       colors: ["transparent"],
     },
     xaxis: {
-      categories: packingData
-        ? packingData.map((item: any) => item.Usuario)
+      categories: pickingData
+        ? pickingData.map((item: any) => item.Usuario)
         : [],
     },
-
     fill: {
       opacity: 2,
     },
@@ -54,7 +53,7 @@ const PackingApexBar = () => {
       },
     },
     title: {
-      text: "Packing",
+      text: "Picking",
       offsetY: 0,
       align: "center",
       style: {
@@ -67,44 +66,40 @@ const PackingApexBar = () => {
   const [series, setSeries] = useState([
     {
       name: "Unidades Preparadas",
-      data: packingData
-        ? packingData.map((item: any) => item.Unidades_Preparadas)
+      data: pickingData
+        ? pickingData.map((item: any) => item.Unidades_Preparadas)
         : [],
-      title: {
-        text: "Unidades Preparadas",
-        align: "center",
-      },
     },
     {
       name: "Lineas Preparadas",
-      data: packingData
-        ? packingData.map((item: any) => item.Lineas_Preparadas)
+      data: pickingData
+        ? pickingData.map((item: any) => item.Lineas_Preparadas)
         : [],
     },
   ]);
 
   useEffect(() => {
-    if (packingData) {
+    if (pickingData) {
       setOptions((prevOptions) => ({
         ...prevOptions,
         xaxis: {
-          categories: packingData.map((item: any) => item.Usuario),
+          categories: pickingData.map((item: any) => item.Usuario),
         },
       }));
       setSeries([
         {
           name: "Unidades Preparadas",
-          data: packingData.map((item: any) => item.Unidades_Preparadas),
+          data: pickingData.map((item: any) => item.Unidades_Preparadas),
         },
         {
           name: "Lineas Preparadas",
-          data: packingData.map((item: any) => item.Lineas_Preparadas),
+          data: pickingData.map((item: any) => item.Lineas_Preparadas),
         },
       ]);
     }
-  }, [packingData]);
+  }, [pickingData]);
 
-  if (isLoadingPacking) return "Cargando...";
+  if (isLoadingPicking) return "Cargando...";
 
   return (
     <div id="chart">
@@ -118,4 +113,4 @@ const PackingApexBar = () => {
   );
 };
 
-export default PackingApexBar;
+export default PickingApexChart;
