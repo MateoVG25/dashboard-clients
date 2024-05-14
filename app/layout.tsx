@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Provider from "@/utils/Provider";
 import { ThemeProvider } from "next-themes";
+import "@radix-ui/themes/styles.css";
 
 export const metadata: Metadata = {
   title: "Dashboard",
-  description: "Dashboard cliente",
+  description: "Dashboard usuarios",
 };
 
 export default function RootLayout({

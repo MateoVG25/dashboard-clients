@@ -27,6 +27,6 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "app/api/ResumenOperacion.ts"
-, "server.js"  ],
+, "server.js", "components/carousel/EmblaCarousel.jsx", "components/ReporteDocumentoERP_chart.jsx"  ],
   "exclude": ["node_modules"]
 }

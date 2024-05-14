@@ -1,21 +1,79 @@
+"use client";
 import React, { useState, useEffect } from "react";
 import ReactApexChart from "react-apexcharts";
 import { PickingAPI } from "../app/api/Picking";
+import { ApexOptions } from "apexcharts";
 
-const PickingApexChart = () => {
+const PickinApexChart = () => {
   const { isLoading: isLoadingPicking, data: pickingData } = PickingAPI();
 
-  const [options, setOptions] = useState({
+  const [options, setOptions] = useState<ApexOptions>({
     chart: {
+      locales: [
+        {
+          name: "es",
+          options: {
+            months: [
+              "Enero",
+              "Febrero",
+              "Marzo",
+              "Abril",
+              "Mayo",
+              "Junio",
+              "Julio",
+              "Agosto",
+              "Septiembre",
+              "Octubre",
+              "Noviembre",
+              "Diciembre",
+            ],
+            shortMonths: [
+              "Ene",
+              "Feb",
+              "Mar",
+              "Abr",
+              "May",
+              "Jun",
+              "Jul",
+              "Ago",
+              "Sep",
+              "Oct",
+              "Nov",
+              "Dic",
+            ],
+            days: [
+              "Domingo",
+              "Lunes",
+              "Martes",
+              "Miércoles",
+              "Jueves",
+              "Viernes",
+              "Sábado",
+            ],
+            shortDays: ["Dom", "Lun", "Mar", "Mie", "Jue", "Vie", "Sab"],
+            toolbar: {
+              exportToSVG: "Descargar SVG",
+              exportToPNG: "Descargar PNG",
+              exportToCSV: "Descargar CSV",
+              selection: "Seleccionar",
+              selectionZoom: "Seleccionar Zoom",
+              zoomIn: "Aumentar",
+              zoomOut: "Disminuir",
+              pan: "Navegación",
+              reset: "Reiniciar Zoom",
+            },
+          },
+        },
+      ],
+      defaultLocale: "es",
       type: "bar",
       height: "100%",
-      width: "100%",
+      width: "80%",
     },
     plotOptions: {
       bar: {
         horizontal: false,
         columnWidth: "50%",
-        endingShape: "rounded",
         dataLabels: {
           position: "top",
         },
@@ -113,4 +171,4 @@ const PickingApexChart = () => {
   );
 };
 
-export default PickingApexChart;
+export default PickinApexChart;

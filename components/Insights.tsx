@@ -19,11 +19,11 @@ const titleDashboard = {
 
 type CardProps = React.ComponentProps<typeof Card>;
 
-export default function Insights({ className, ...props }: CardProps) {
+function Insights({ className, ...props }: CardProps) {
   const { data: resumenOperacionData } = ResumenOperacionAPI();
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-4 justify-center">
-      <Card className={`${cn(className)}`} {...props}>
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-7 px-12 justify-center">
+      <Card className={`${cn(className)} rounded-lg`} {...props}>
         <CardHeader className="flex items-center space-x-2">
           <TruckIcon className="h-6 w-6" />
           <CardTitle className="text-center">
@@ -217,6 +217,8 @@ export default function Insights({ className, ...props }: CardProps) {
     </div>
   );
 }
+
+export default Insights;
 
 function SettingsIcon(props: any) {
   return (

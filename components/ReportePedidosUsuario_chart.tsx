@@ -2,11 +2,12 @@
 
 import React, { useState, useEffect } from "react";
 import ReactApexChart from "react-apexcharts";
-import { RecepcionAPI } from "../app/api/Recepcion";
+import { ReportePedidosUsuarioAPI } from "../app/api/ReportePedidosUsuario";
 import { ApexOptions } from "apexcharts";
 
-const RecepcionApexBar = () => {
-  const { isLoading: isLoadingRecepcion, data: recepcionData } = RecepcionAPI();
+const ReportePedidosUsuario_chart = () => {
+  const { isLoading: isLoadingReporte, data: reporteDocumentoData } =
+    ReportePedidosUsuarioAPI();
 
   const [options, setOptions] = useState<ApexOptions>({
     chart: {
@@ -67,109 +68,117 @@ const RecepcionApexBar = () => {
         },
       ],
       defaultLocale: "es",
-      type: "bar",
+      type: "line",
       height: "100%",
       width: "80%",
-    },
-    plotOptions: {
-      bar: {
-        horizontal: false,
-        columnWidth: "50%",
-        dataLabels: {
-          position: "top",
-        },
+      dropShadow: {
+        enabled: true,
+        color: "#000",
+        top: 18,
+        left: 7,
+        blur: 10,
+        opacity: 0.2,
+      },
+      zoom: {
+        enabled: false,
+      },
+      toolbar: {
+        show: false,
       },
     },
+    colors: ["#77B6EA", "#545454"],
     dataLabels: {
       enabled: true,
-      formatter: function (val: any) {
-        return val;
-      },
-      offsetY: -20,
       style: {
-        fontSize: "16px",
-        colors: ["#304758"],
+        fontSize: "20px",
       },
     },
     stroke: {
-      show: true,
-      width: 2,
-      colors: ["transparent"],
+      curve: "smooth",
+    },
+    title: {
+      text: "REPORTE PEDIDOS USUARIO",
+      align: "center",
+      style: {
+        fontSize: "25px",
+      },
+    },
+    grid: {
+      borderColor: "#e7e7e7",
+      row: {
+        colors: ["#f3f3f3", "transparent"],
+        opacity: 0.5,
+      },
+    },
+    markers: {
+      size: 1,
     },
     xaxis: {
-      categories: recepcionData
-        ? recepcionData.map((item: any) => item.Usuario)
+      categories: reporteDocumentoData
+        ? reporteDocumentoData.map((item: any) => item.USUARIO)
         : [],
-    },
-    fill: {
-      opacity: 2,
-    },
-    tooltip: {
-      y: {
-        formatter: function (val: any) {
-          return val;
+      title: {
+        text: "USUARIO",
+        style: {
+          fontSize: "20px",
         },
       },
     },
-    title: {
-      text: "Recepción",
-      offsetY: 0,
-      align: "center",
-      style: {
-        color: "#444",
-        fontSize: "30px",
+    yaxis: {
+      title: {
+        text: "PEDIDOS PREPARADOS",
+        style: {
+          fontSize: "20px",
+        },
       },
+    },
+    legend: {
+      position: "top",
+      horizontalAlign: "right",
+      floating: true,
+      offsetY: -25,
+      offsetX: -5,
     },
   });
 
   const [series, setSeries] = useState([
     {
-      name: "Unidades Preparadas",
-      data: recepcionData
-        ? recepcionData.map((item: any) => item.Unidades_Preparadas)
-        : [],
-    },
-    {
-      name: "Lineas Preparadas",
-      data: recepcionData
-        ? recepcionData.map((item: any) => item.Lineas_Preparadas)
+      name: "PEDIDOSPREPARADOS",
+      data: reporteDocumentoData
+        ? reporteDocumentoData.map((item: any) => item.PEDIDOSPREPARADOS)
         : [],
     },
   ]);
 
   useEffect(() => {
-    if (recepcionData) {
+    if (reporteDocumentoData) {
       setOptions((prevOptions) => ({
         ...prevOptions,
         xaxis: {
-          categories: recepcionData.map((item: any) => item.Usuario),
+          categories: reporteDocumentoData.map((item: any) => item.USUARIO),
         },
       }));
       setSeries([
         {
-          name: "Unidades Preparadas",
-          data: recepcionData.map((item: any) => item.Unidades_Preparadas),
-        },
-        {
-          name: "Lineas Preparadas",
-          data: recepcionData.map((item: any) => item.Lineas_Preparadas),
+          name: "PEDIDOSPREPARADOS",
+          data: reporteDocumentoData.map((item: any) => item.PEDIDOSPREPARADOS),
         },
       ]);
     }
-  }, [recepcionData]);
+  }, [reporteDocumentoData]);
 
-  if (isLoadingRecepcion) return "Cargando...";
+  if (isLoadingReporte) return "Cargando...";
 
   return (
     <div id="chart">
       <ReactApexChart
         options={options}
         series={series}
-        type="bar"
+        type="line"
         height={500}
       />
     </div>
   );
 };
 
-export default RecepcionApexBar;
+export default ReportePedidosUsuario_chart;

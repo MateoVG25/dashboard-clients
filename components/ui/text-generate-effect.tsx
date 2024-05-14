@@ -16,7 +16,6 @@ export const TextGenerateEffect = ({
   const [scope, animate] = useAnimate();
   let wordsArray = words.split(" ");
   const animateRef = useRef(animate);
-  animateRef.current = animate;
 
   useEffect(() => {
     animateRef.current(

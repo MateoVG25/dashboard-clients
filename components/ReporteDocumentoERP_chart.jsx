@@ -2,13 +2,14 @@
 
 import React, { useState, useEffect } from "react";
 import ReactApexChart from "react-apexcharts";
-import { PackingAPI } from "../app/api/Packing";
+import { ReporteDocumentoERPAPI } from "../app/api/ReporteDocumentoERP";
 import { ApexOptions } from "apexcharts";
 
-const PackingApexBar = () => {
-  const { isLoading: isLoadingPacking, data: packingData } = PackingAPI();
+const ReporteDocumentoERP = () => {
+  const { isLoading: isLoadingReporteERP, data: reporteDocumentoERPData } =
+    ReporteDocumentoERPAPI();
 
-  const [options, setOptions] = useState<ApexOptions>({
+  const [options, setOptions] = useState({
     chart: {
       locales: [
         {
@@ -70,99 +71,106 @@ const PackingApexBar = () => {
       type: "bar",
       height: "100%",
       width: "80%",
+      stacked: true,
+      toolbar: {
+        show: false,
+      },
     },
     plotOptions: {
       bar: {
-        horizontal: false,
-        columnWidth: "50%",
-        dataLabels: {
-          position: "top",
-        },
+        horizontal: true,
       },
     },
     dataLabels: {
       enabled: true,
-      formatter: function (val: any) {
-        return val;
-      },
-      offsetY: -20,
       style: {
-        fontSize: "16px",
-        colors: ["#304758"],
+        fontSize: "20px",
+        colors: ["#000000"],
       },
     },
     stroke: {
-      show: true,
-      width: 2,
-      colors: ["transparent"],
-    },
-    xaxis: {
-      categories: packingData
-        ? packingData.map((item: any) => item.Usuario)
-        : [],
-    },
-    fill: {
-      opacity: 2,
-    },
-    tooltip: {
-      y: {
-        formatter: function (val: any) {
-          return val;
-        },
-      },
+      width: 1,
+      colors: ["#fff"],
     },
     title: {
-      text: "Packing",
-      offsetY: 0,
+      text: "REPORTE DOCUMENTO ERP",
       align: "center",
       style: {
-        color: "#444",
-        fontSize: "30px",
+        fontSize: "25px",
+      },
+    },
+    xaxis: {
+      categories: [],
+    },
+    yaxis: {
+      title: {
+        text: "Pedidos",
+      },
+    },
+    fill: {
+      opacity: 4,
+    },
+    legend: {
+      position: "top",
+      width: "100%",
+
+      horizontalAlign: "center",
+      offsetX: 0,
+      offsetY: 0,
+      labels: {
+        colors: ["#000000"],
+        fontSize: "28px",
       },
     },
   });
 
-  const [series, setSeries] = useState([
-    {
-      name: "Unidades Preparadas",
-      data: packingData
-        ? packingData.map((item: any) => item.Unidades_Preparadas)
-        : [],
-      title: {
-        text: "Unidades Preparadas",
-        align: "center",
-      },
-    },
-    {
-      name: "Lineas Preparadas",
-      data: packingData
-        ? packingData.map((item: any) => item.Lineas_Preparadas)
-        : [],
-    },
-  ]);
+  const [series, setSeries] = useState([]);
 
   useEffect(() => {
-    if (packingData) {
+    if (reporteDocumentoERPData) {
+      const documentos = Array.from(
+        new Set(reporteDocumentoERPData.map((item) => item.DocumentoERP))
+      );
+
+      const series = [
+        {
+          name: "PEDIDOS EN PICKING",
+          data: documentos.map((documento) =>
+            reporteDocumentoERPData
+              .filter((item) => item.DocumentoERP === documento)
+              .reduce((sum, item) => sum + item.PedidosEnPicking, 0)
+          ),
+        },
+        {
+          name: "PEDIDOS EN PACKING",
+          data: documentos.map((documento) =>
+            reporteDocumentoERPData
+              .filter((item) => item.DocumentoERP === documento)
+              .reduce((sum, item) => sum + item.PedidosEnPacking, 0)
+          ),
+        },
+        {
+          name: "PEDIDOS EMPACADOS",
+          data: documentos.map((documento) =>
+            reporteDocumentoERPData
+              .filter((item) => item.DocumentoERP === documento)
+              .reduce((sum, item) => sum + item.PedidosEmpacados, 0)
+          ),
+        },
+      ];
+
       setOptions((prevOptions) => ({
         ...prevOptions,
         xaxis: {
-          categories: packingData.map((item: any) => item.Usuario),
+          categories: documentos,
         },
       }));
-      setSeries([
-        {
-          name: "Unidades Preparadas",
-          data: packingData.map((item: any) => item.Unidades_Preparadas),
-        },
-        {
-          name: "Lineas Preparadas",
-          data: packingData.map((item: any) => item.Lineas_Preparadas),
-        },
-      ]);
-    }
-  }, [packingData]);
 
-  if (isLoadingPacking) return "Cargando...";
+      setSeries(series);
+    }
+  }, [reporteDocumentoERPData]);
+
+  if (isLoadingReporteERP) return "Cargando...";
 
   return (
     <div id="chart">
@@ -176,4 +184,4 @@ const PackingApexBar = () => {
   );
 };
 
-export default PackingApexBar;
+export default ReporteDocumentoERP;

@@ -1,22 +1,21 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { RECEPCION_URL } from "@/global-variables";
+import { REPORTE_DOCUMENTO_ERP_URL } from "@/global-variables";
 
-export const RecepcionAPI = () => {
-  const getRecepcion = async () => {
+export const ReporteDocumentoERPAPI = () => {
+  const getReporteDocumentoERP = async () => {
     try {
-      const url = `${RECEPCION_URL}`;
+      const url = `${REPORTE_DOCUMENTO_ERP_URL}`;
       const res = await axios.get(url);
       return res.data;
     } catch (error) {
-      console.error(error, "Error al cargar los datos de recepcion");
+      console.error(error, "Error al cargar el reporte documento ERP");
       throw error;
     }
   };
-
   const { isLoading, isError, error, data } = useQuery({
-    queryKey: ["KeyRecepcion"],
-    queryFn: getRecepcion,
+    queryKey: ["KeyReporteDocumentoERP"],
+    queryFn: getReporteDocumentoERP,
     refetchInterval: 15 * 60 * 1000,
   });
 

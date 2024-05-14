@@ -1,12 +1,17 @@
-"use client";
-
 import React from "react";
+import dynamic from "next/dynamic";
 
 import HeaderComponent from "@/components/ui/header";
-
 import Insights from "@/components/Insights";
+import { EmblaOptionsType } from "embla-carousel";
+import TablaUltimoDia from "@/components/table/page";
 
-import { EmblaCarousel } from "@/components/carousel/EmblaCarousel";
+const EmblaCarousel = dynamic(
+  () => import("@/components/carousel/EmblaCarousel"),
+  { ssr: false }
+);
+
+const OPTIONS: EmblaOptionsType = { loop: true };
 
 const Dashboard = () => {
   const cards = <Insights />;
@@ -14,9 +19,12 @@ const Dashboard = () => {
   return (
     <>
       <HeaderComponent />
-      <div className="hidden 2xl:block">{cards}</div>
-      <div className="2xl:block flex flex-wrap justify-center mt-6 gap-x-10 ">
-        <EmblaCarousel />
+      <div className="hidden 2xl:block ">{cards}</div>
+
+      <EmblaCarousel options={OPTIONS} />
+
+      <div className="mt-6">
+        <TablaUltimoDia />
       </div>
     </>
   );
