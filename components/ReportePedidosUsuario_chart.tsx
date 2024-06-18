@@ -70,7 +70,7 @@ const ReportePedidosUsuario_chart = () => {
       defaultLocale: "es",
       type: "line",
       height: "100%",
-      width: "80%",
+      width: "100%",
       dropShadow: {
         enabled: true,
         color: "#000",

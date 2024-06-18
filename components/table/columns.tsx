@@ -44,7 +44,7 @@ export const columns: ColumnDef<Transaction>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader
         column={column}
-        title="Tiempo desde ultima transacción"
+        title="Tiempo desde ultima transacción (Minutos)"
       />
     ),
   },

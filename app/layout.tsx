@@ -28,7 +28,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body>
+      <body style={{ backgroundColor: "#edf6f9" }}>
         <ThemeProvider defaultTheme="light" attribute="class">
           <Provider>{children}</Provider>
         </ThemeProvider>

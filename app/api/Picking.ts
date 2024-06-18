@@ -17,7 +17,7 @@ export const PickingAPI = () => {
   const { isLoading, isError, error, data } = useQuery({
     queryKey: ["KeyPicking"],
     queryFn: getPicking,
-    refetchInterval: 15 * 60 * 1000, // Refetch every 15 minutes
+    refetchInterval: 6000,
   });
 
   return {

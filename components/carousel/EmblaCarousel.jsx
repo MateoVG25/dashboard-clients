@@ -49,10 +49,11 @@ const EmblaCarousel = (props) => {
   const toggleAutoplay = useCallback(() => {
     const autoplay = emblaApi?.plugins()?.autoplay;
     if (!autoplay) return;
-
-    console.log("Autoplay is currently playing:", autoplay.isPlaying());
-    const playOrStop = autoplay.isPlaying() ? autoplay.stop : autoplay.play;
-    playOrStop();
+    if (autoplay.isPlaying()) {
+      autoplay.stop();
+    } else {
+      autoplay.play();
+    }
   }, [emblaApi]);
 
   useEffect(() => {
@@ -67,43 +68,45 @@ const EmblaCarousel = (props) => {
   }, [emblaApi]);
 
   return (
-    <div>
-      <div className="embla" ref={emblaRef}>
-        <div className="embla__container">
-          <div className="embla__slide">
-            <PackingApexBar />
+    <div className="flex" style={{ width: "80%", margin: "0 auto" }}>
+      <div className="embla ">
+        <div className="embla_viewport" ref={emblaRef}>
+          <div className="embla__container">
+            <div className="embla__slide">
+              <PackingApexBar />
+            </div>
+            <div className="embla__slide">
+              <PickingApexBar />
+            </div>
+            <div className="embla__slide">
+              <RecepcionApexBar />
+            </div>
+            <div className="embla__slide">
+              <ReportePedidosUsuario />
+            </div>
+            <div className="embla__slide">
+              <ReporteDocumentoERP />
+            </div>
           </div>
-          <div className="embla__slide">
-            <PickingApexBar />
+          <div className="embla__controls">
+            <div className="embla__buttons">
+              <PrevButton
+                onClick={() => onButtonAutoplayClick(onPrevButtonClick)}
+                disabled={prevBtnDisabled}
+              />
+              <NextButton
+                onClick={() => onButtonAutoplayClick(onNextButtonClick)}
+                disabled={nextBtnDisabled}
+              />
+            </div>
+            <button
+              className="embla__play"
+              onClick={toggleAutoplay}
+              type="button"
+            >
+              {isPlaying ? "Parar" : "Iniciar"}
+            </button>
           </div>
-          <div className="embla__slide">
-            <RecepcionApexBar />
-          </div>
-          <div className="embla__slide">
-            <ReportePedidosUsuario />
-          </div>
-          <div className="embla__slide">
-            <ReporteDocumentoERP />
-          </div>
-        </div>
-        <div className="embla__controls">
-          <div className="embla__buttons">
-            <PrevButton
-              onClick={() => onButtonAutoplayClick(onPrevButtonClick)}
-              disabled={prevBtnDisabled}
-            />
-            <NextButton
-              onClick={() => onButtonAutoplayClick(onNextButtonClick)}
-              disabled={nextBtnDisabled}
-            />
-          </div>
-          <button
-            className="embla__play"
-            onClick={toggleAutoplay}
-            type="button"
-          >
-            {isPlaying ? "Parar" : "Iniciar"}
-          </button>
         </div>
       </div>
     </div>

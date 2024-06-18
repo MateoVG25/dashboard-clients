@@ -68,7 +68,7 @@ const PickinApexChart = () => {
       defaultLocale: "es",
       type: "bar",
       height: "100%",
-      width: "80%",
+      width: "auto",
     },
     plotOptions: {
       bar: {

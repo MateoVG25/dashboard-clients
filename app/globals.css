@@ -7,11 +7,3 @@
 body {
   font-family: "Fira Sans Condensed";
 }
-
-body.dark-theme {
-  background-color: rgb(46, 42, 75);
-}
-
-body.light-theme {
-  background-color: rgb(255, 255, 255);
-}

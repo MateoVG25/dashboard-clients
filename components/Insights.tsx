@@ -1,21 +1,14 @@
 "use client";
 
-import { CardTitle, CardHeader, CardContent, Card } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
+
+// components
+import CardStructure from "./cards/CardStructure";
 
 // apis
 import { ResumenOperacionAPI } from "@/app/api/ResumenOperacion";
-
-const titleDashboard = {
-  titleDashboard: "Dashboard",
-  Cargados: "Cargados",
-  EnBandeja: "En bandeja",
-  Picking: "Picking",
-  Packing: "Packing",
-  PedidosFinalizadosPack: "Packing finalizados",
-  PackingIntervenciones: "Packing Intervenciones",
-};
+import { titleDashboard } from "./cards/data";
 
 type CardProps = React.ComponentProps<typeof Card>;
 
@@ -23,197 +16,77 @@ function Insights({ className, ...props }: CardProps) {
   const { data: resumenOperacionData } = ResumenOperacionAPI();
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-7 px-12 justify-center">
-      <Card className={`${cn(className)} rounded-lg`} {...props}>
-        <CardHeader className="flex items-center space-x-2">
-          <TruckIcon className="h-6 w-6" />
-          <CardTitle className="text-center">
-            <TextGenerateEffect
-              words={titleDashboard.Cargados}
-              duration={2}
-              textSize="text-4xl"
-            />
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          {resumenOperacionData &&
-            resumenOperacionData.map((item: any, index: number) => (
-              <div key={index}>
-                <p className="text-center">
-                  Pedidos:{" "}
-                  <span className="font-bold">{item.PedidosCargados}</span>
-                </p>
-                <p className="text-center">
-                  Lineas:{" "}
-                  <span className="font-bold">{item.LineasCargadas}</span>
-                </p>
-                <p className="text-center">
-                  Unidades:{" "}
-                  <span className="font-bold">{item.UnidadesCargadas}</span>
-                </p>
-              </div>
-            ))}
-        </CardContent>
-      </Card>
-      <Card className={`${cn(className)}`} {...props}>
-        <CardHeader className="flex items-center space-x-2">
-          <InboxIcon className="h-6 w-6" />
+      {/* Cargados */}
+      <CardStructure
+        title={titleDashboard.Cargados}
+        icon={<TruckIcon className="h-6 w-6" />}
+        data={resumenOperacionData}
+        keyNameOrders="PedidosCargados"
+        keyNameLines="LineasCargadas"
+        keyNameUnits="UnidadesCargadas"
+        className={cn(className)}
+        props={props}
+      />
 
-          <CardTitle className="text-center">
-            <TextGenerateEffect
-              words={titleDashboard.EnBandeja}
-              duration={2}
-              textSize="text-4xl"
-            />
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="grid gap-4">
-          {resumenOperacionData &&
-            resumenOperacionData.map((item: any, index: number) => (
-              <div key={index}>
-                <p className="text-center">
-                  Pedidos:{" "}
-                  <span className="font-bold">{item.PedidosEnBandeja}</span>
-                </p>
-                <p className="text-center">
-                  Lineas:{" "}
-                  <span className="font-bold">{item.LineasEnBandeja}</span>
-                </p>
-                <p className="text-center">
-                  Unidades:{" "}
-                  <span className="font-bold">{item.UnidadesEnBandeja}</span>
-                </p>
-              </div>
-            ))}
-        </CardContent>
-      </Card>
-      <Card className={`${cn(className)}`} {...props}>
-        <CardHeader className="flex items-center space-x-2">
-          <HandIcon className="h-6 w-6" />
-          <CardTitle className="text-center">
-            <TextGenerateEffect
-              words={titleDashboard.Picking}
-              duration={2}
-              textSize="text-4xl"
-            />
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="grid gap-4">
-          {resumenOperacionData &&
-            resumenOperacionData.map((item: any, index: number) => (
-              <div key={index}>
-                <p className="text-center">
-                  Pedidos:{" "}
-                  <span className="font-bold">{item.PedidosEnPicking}</span>
-                </p>
-                <p className="text-center">
-                  Lineas pendientes:{" "}
-                  <span className="font-bold">{item.LineasPendientesPick}</span>
-                </p>
-                <p className="text-center">
-                  Unidades pendientes:{" "}
-                  <span className="font-bold">
-                    {item.UnidadesPendientesPick}
-                  </span>
-                </p>
-              </div>
-            ))}
-        </CardContent>
-      </Card>
-      <Card className={`${cn(className)}`} {...props}>
-        <CardHeader className="flex items-center space-x-2">
-          <PackageIcon className="h-6 w-6" />
-          <CardTitle className="text-center">
-            <TextGenerateEffect
-              words={titleDashboard.Packing}
-              duration={2}
-              textSize="text-4xl"
-            />
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="grid gap-4">
-          {resumenOperacionData &&
-            resumenOperacionData.map((item: any, index: number) => (
-              <div key={index}>
-                <p className="text-center">
-                  Pedidos:{" "}
-                  <span className="font-bold">{item.PedidosEnPacking}</span>
-                </p>
-                <p className="text-center">
-                  Lineas pendientes:{" "}
-                  <span className="font-bold">{item.LineasPendientesPack}</span>
-                </p>
-                <p className="text-center">
-                  Unidades pendientes:{" "}
-                  <span className="font-bold">
-                    {item.UnidadesPendientesPack}
-                  </span>
-                </p>
-              </div>
-            ))}
-        </CardContent>
-      </Card>
-      <Card className={`${cn(className)}`} {...props}>
-        <CardHeader className="flex items-center space-x-2">
-          <SettingsIcon className="h-6 w-6" />
-          <CardTitle className="text-center">
-            <TextGenerateEffect
-              words={titleDashboard.PackingIntervenciones}
-              duration={2}
-              textSize="text-4xl"
-            />
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="grid gap-4">
-          {resumenOperacionData &&
-            resumenOperacionData.map((item: any, index: number) => (
-              <div key={index}>
-                <p className="text-center">
-                  Pedidos:{" "}
-                  <span className="font-bold">
-                    {item.PedidosIntervencionPack}
-                  </span>
-                </p>
-                <p className="text-center">
-                  Lineas:{" "}
-                  <span className="font-bold">
-                    {item.LineasIntervencionPack}
-                  </span>
-                </p>
-                <p className="text-center">
-                  Unidades:{" "}
-                  <span className="font-bold">
-                    {item.UnidadesIntervencionPack}
-                  </span>
-                </p>
-              </div>
-            ))}
-        </CardContent>
-      </Card>
-      <Card className={`${cn(className)}`} {...props}>
-        <CardHeader className="flex items-center space-x-2">
-          <CheckCircleIcon className="h-6 w-6" />
-          <CardTitle className="text-center">
-            <TextGenerateEffect
-              words={titleDashboard.PedidosFinalizadosPack}
-              duration={2}
-              textSize="text-4xl"
-            />
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="grid gap-4">
-          {resumenOperacionData &&
-            resumenOperacionData.map((item: any, index: number) => (
-              <div key={index}>
-                <p className="text-center">
-                  Pedidos:{" "}
-                  <span className="font-bold">
-                    {item.PedidosFinalizadosPack}
-                  </span>
-                </p>
-              </div>
-            ))}
-        </CardContent>
-      </Card>
+      {/* EnBandeja */}
+      <CardStructure
+        title={titleDashboard.EnBandeja}
+        icon={<InboxIcon className="h-6 w-6" />}
+        data={resumenOperacionData}
+        keyNameOrders="PedidosEnBandeja"
+        keyNameLines="LineasEnBandeja"
+        keyNameUnits="UnidadesEnBandeja"
+        className={cn(className)}
+        props={props}
+      />
+
+      {/* Picking */}
+      <CardStructure
+        title={titleDashboard.Picking}
+        icon={<HandIcon className="h-6 w-6" />}
+        data={resumenOperacionData}
+        keyNameOrders="PedidosEnPicking"
+        keyNameLines="LineasPendientesPick"
+        keyNameUnits="UnidadesPendientesPick"
+        className={cn(className)}
+        props={props}
+      />
+
+      {/* Packing */}
+      <CardStructure
+        title={titleDashboard.Packing}
+        icon={<PackageIcon />}
+        data={resumenOperacionData}
+        keyNameOrders="PedidosEnPacking"
+        keyNameLines="LineasPendientesPack"
+        keyNameUnits="UnidadesPendientesPack"
+        className={cn(className)}
+        props={props}
+      />
+
+      {/* Packing Intervenciones */}
+      <CardStructure
+        title={titleDashboard.PackingIntervenciones}
+        icon={<PackageIcon />}
+        data={resumenOperacionData}
+        keyNameOrders="PedidosIntervencionPack"
+        keyNameLines="LineasIntervencionPack"
+        keyNameUnits="UnidadesIntervencionPack"
+        className={cn(className)}
+        props={props}
+      />
+
+      {/* Packing Finalizados */}
+      <CardStructure
+        title={titleDashboard.PedidosFinalizadosPack}
+        icon={<CheckCircleIcon className="h-6 w-6" />}
+        data={resumenOperacionData}
+        keyNameOrders="PedidosFinalizadosPack"
+        keyNameLines="LineasFinalizadosPack"
+        keyNameUnits="UnidadesFinalizadosPack"
+        className={cn(className)}
+        props={props}
+      />
     </div>
   );
 }
