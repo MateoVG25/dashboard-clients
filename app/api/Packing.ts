@@ -16,7 +16,7 @@ export const PackingAPI = () => {
   const { isLoading, isError, error, data } = useQuery({
     queryKey: ["KeyPacking"],
     queryFn: getPacking,
-    refetchInterval: 15 * 60 * 1000, // Refetch every 15 minutes
+    refetchInterval: 15 * 60 * 1000,
   });
 
   return {

@@ -27,7 +27,7 @@ const CardStructure: React.FC<CardDashboardProps> = ({
 }) => {
   return (
     <Card className={`${cn(className)} rounded-xl`} {...props}>
-      <CardHeader className="flex items-center space-x-2">
+      <CardHeader className="flex items-center space-x-1">
         {icon}
         <CardTitle className="text-center">
           <TextGenerateEffect words={title} duration={2} textSize="text-4xl" />

@@ -1,8 +1,9 @@
 .embla {
   overflow: hidden;
-  height: auto;
+
   width: 100%;
   margin-top: 2rem;
+  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
 }
 
 .embla__viewport {

@@ -2,9 +2,10 @@ import React from "react";
 import dynamic from "next/dynamic";
 
 import HeaderComponent from "@/components/ui/header";
-import Insights from "@/components/Insights";
+import { Insights } from "@/components/Insights";
 import { EmblaOptionsType } from "embla-carousel";
 import TablaUltimoDia from "@/components/table/page";
+import { Separator } from "@/components/ui/separator";
 
 const EmblaCarousel = dynamic(
   () => import("@/components/carousel/EmblaCarousel"),
@@ -19,9 +20,12 @@ const Dashboard = () => {
   return (
     <>
       <HeaderComponent />
+
       <div className="hidden 2xl:block ">{cards}</div>
 
       <EmblaCarousel options={OPTIONS} />
+
+      {/* <div className="divider"></div> */}
 
       <div className="mt-6">
         <TablaUltimoDia />

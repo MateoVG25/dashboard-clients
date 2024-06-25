@@ -69,7 +69,14 @@ const EmblaCarousel = (props) => {
 
   return (
     <div className="flex" style={{ width: "80%", margin: "0 auto" }}>
-      <div className="embla ">
+      <div
+        className="embla bg-white"
+        style={{
+          borderRadius: "1rem",
+          borderWidth: "0.05rem",
+          borderColor: "",
+        }}
+      >
         <div className="embla_viewport" ref={emblaRef}>
           <div className="embla__container">
             <div className="embla__slide">
@@ -88,7 +95,7 @@ const EmblaCarousel = (props) => {
               <ReporteDocumentoERP />
             </div>
           </div>
-          <div className="embla__controls">
+          <div className="embla__controls ">
             <div className="embla__buttons">
               <PrevButton
                 onClick={() => onButtonAutoplayClick(onPrevButtonClick)}

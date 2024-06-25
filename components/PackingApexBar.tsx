@@ -10,7 +10,6 @@ const PackingApexBar = () => {
 
   const [options, setOptions] = useState<ApexOptions>({
     chart: {
-      background: "white",
       locales: [
         {
           name: "es",
@@ -166,13 +165,28 @@ const PackingApexBar = () => {
   if (isLoadingPacking) return "Cargando...";
 
   return (
-    <div id="chart">
-      <ReactApexChart
-        options={options}
-        series={series}
-        type="bar"
-        height={500}
-      />
+    <div
+      style={{
+        height: "500px",
+        position: "relative",
+      }}
+    >
+      <div
+        id="chart"
+        style={{
+          borderRadius: "10px",
+          overflow: "hidden",
+          height: "100%",
+          borderColor: "black",
+        }}
+      >
+        <ReactApexChart
+          options={options}
+          series={series}
+          type="bar"
+          height={500}
+        />
+      </div>
     </div>
   );
 };
